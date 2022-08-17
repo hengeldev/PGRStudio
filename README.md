@@ -10,6 +10,7 @@ Some features are:
 - Build Asset List of assets inside game files.
 - CLI version.
 - Option "Option -> Export Options -> Ignore Controller Animations" to export model/aniamators without including all animations (slow).
+- Load Assets listed in `.txt` file.
 ```
 _____________________________________________________________________________________________________________________________
 How to use:
