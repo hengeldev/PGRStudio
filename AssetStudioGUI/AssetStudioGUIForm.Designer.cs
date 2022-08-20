@@ -272,9 +272,6 @@
             // specifyGameVersion
             // 
             this.specifyGameVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.specifyGameVersion.Items.AddRange(new object[] {
-            "Global",
-            "JP"});
             this.specifyGameVersion.Name = "specifyGameVersion";
             this.specifyGameVersion.Size = new System.Drawing.Size(121, 23);
             this.specifyGameVersion.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
@@ -561,7 +558,7 @@
             this.console.Text = "Enable Console";
             this.console.ToolTipText = "Check this option to log all events on a debug console.";
             this.console.CheckedChanged += new System.EventHandler(this.console_CheckedChanged);
-            //  
+            // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1100,7 +1097,7 @@
             this.showOriginalFileToolStripMenuItem.Text = "Show original file";
             this.showOriginalFileToolStripMenuItem.Visible = false;
             this.showOriginalFileToolStripMenuItem.Click += new System.EventHandler(this.showOriginalFileToolStripMenuItem_Click);
-            //
+            // 
             // miscToolStripMenuItem
             // 
             this.miscToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {

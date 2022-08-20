@@ -25,12 +25,22 @@ namespace AssetStudioCLI
             {
                 try
                 {
-                    Exporter.RetryIfExist = o.Override;
+                    var version = VersionManager.GetVersion(o.Version);
+                    if (version == null)
+                    {
+                        Console.WriteLine("Invalid Version !!");
+                        Console.WriteLine(VersionManager.SupportedVersions());
+                        return;
+                    }
+
+                    PGR.Version = o.Version;
 
                     if (o.Verbose)
                     {
                         Logger.Default = new ConsoleLogger();
                     }
+
+                    Logger.Info($"Target Version is {version}");
 
                     var inputPath = o.Input;
                     var outputPath = o.Output;
@@ -78,8 +88,8 @@ namespace AssetStudioCLI
         public IEnumerable<Regex> Filter { get; set; }
         [Option('m', "map", HelpText = "Build CABMap/AssetMap.")]
         public bool Map { get; set; }
-        [Option('o', "override", HelpText = "Export assets even if name already exist.")]
-        public bool Override { get; set; }
+        [Option('s', "version", HelpText = "Specify game version.", Default = 0)]
+        public int Version { get; set; }
         [Value(0, Required = true, MetaName = "input_path", HelpText = "Input file/folder.")]
         public string Input { get; set; }
         [Value(1, Required = true, MetaName = "output_path", HelpText = "Output folder.")]

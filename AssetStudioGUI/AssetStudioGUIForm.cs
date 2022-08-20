@@ -105,6 +105,7 @@ namespace AssetStudioGUI
             displayAll.Checked = Properties.Settings.Default.displayAll;
             displayInfo.Checked = Properties.Settings.Default.displayInfo;
             enablePreview.Checked = Properties.Settings.Default.enablePreview;
+            specifyGameVersion.Items.AddRange(VersionManager.GetVersions());
             specifyGameVersion.SelectedIndex = Properties.Settings.Default.gameVersion;
             PGR.Version = Properties.Settings.Default.gameVersion;
             ConsoleHelper.AllocConsole();
