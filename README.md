@@ -11,6 +11,7 @@ Some features are:
 - CLI version.
 - Option "Option -> Export Options -> Ignore Controller Animations" to export model/aniamators without including all animations (slow).
 - Load Assets listed in `.txt` file.
+- Support multiple game versions (Currently: "Global, JP"), Option `Options -> Specify Game Version`.
 ```
 _____________________________________________________________________________________________________________________________
 How to use:
@@ -33,7 +34,7 @@ Copyright (C) 2022 AssetStudioCLI
 
   -m, --map               Build CABMap/AssetMap.
 
-  -o, --override          Export assets even if name already exist.
+  -s, --version           (Default: 0) Specify game version.
 
   --help                  Display this help screen.
 
