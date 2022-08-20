@@ -41,6 +41,8 @@
             this.displayAll = new System.Windows.Forms.ToolStripMenuItem();
             this.enablePreview = new System.Windows.Forms.ToolStripMenuItem();
             this.displayInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.specifyGameVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.specifyGameVersion = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.specifyUnityVersion = new System.Windows.Forms.ToolStripTextBox();
             this.showExpOpt = new System.Windows.Forms.ToolStripMenuItem();
@@ -218,6 +220,7 @@
             this.displayAll,
             this.enablePreview,
             this.displayInfo,
+            this.specifyGameVersionToolStripMenuItem,
             this.toolStripMenuItem14,
             this.showExpOpt});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
@@ -257,6 +260,24 @@
             this.displayInfo.ToolTipText = "Toggle the overlay that shows information about each asset, eg. image size, forma" +
     "t, audio bitrate, etc.";
             this.displayInfo.CheckedChanged += new System.EventHandler(this.displayAssetInfo_Check);
+            // 
+            // specifyGameVersionToolStripMenuItem
+            // 
+            this.specifyGameVersionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.specifyGameVersion});
+            this.specifyGameVersionToolStripMenuItem.Name = "specifyGameVersionToolStripMenuItem";
+            this.specifyGameVersionToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.specifyGameVersionToolStripMenuItem.Text = "Specify Game Version";
+            // 
+            // specifyGameVersion
+            // 
+            this.specifyGameVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specifyGameVersion.Items.AddRange(new object[] {
+            "Global",
+            "JP"});
+            this.specifyGameVersion.Name = "specifyGameVersion";
+            this.specifyGameVersion.Size = new System.Drawing.Size(121, 23);
+            this.specifyGameVersion.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
             // 
             // toolStripMenuItem14
             // 
@@ -540,7 +561,7 @@
             this.console.Text = "Enable Console";
             this.console.ToolTipText = "Check this option to log all events on a debug console.";
             this.console.CheckedChanged += new System.EventHandler(this.console_CheckedChanged);
-            // 
+            //  
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1079,7 +1100,7 @@
             this.showOriginalFileToolStripMenuItem.Text = "Show original file";
             this.showOriginalFileToolStripMenuItem.Visible = false;
             this.showOriginalFileToolStripMenuItem.Click += new System.EventHandler(this.showOriginalFileToolStripMenuItem_Click);
-            // 
+            //
             // miscToolStripMenuItem
             // 
             this.miscToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1102,7 +1123,7 @@
             this.buildAssetMapToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buildAssetMapToolStripMenuItem.Text = "Build AssetMap";
             this.buildAssetMapToolStripMenuItem.Click += new System.EventHandler(this.buildAssetMapToolStripMenuItem_Click);
-            // 
+            //
             // AssetStudioGUIForm
             // 
             this.AllowDrop = true;
@@ -1253,6 +1274,8 @@
         private System.Windows.Forms.ToolStripMenuItem buildPGRMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buildAssetMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem console;
+        private System.Windows.Forms.ToolStripMenuItem specifyGameVersionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox specifyGameVersion;
     }
 }
 

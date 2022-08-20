@@ -9,7 +9,7 @@ namespace AssetStudio
     {
         public static Dictionary<string, string> CABMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        public static void BuildPGRMap(List<string> files)
+        public static void BuildPGRMap(List<string> files, string version)
         {
             Logger.Info(string.Format("Building PGRMap"));
             try
@@ -51,7 +51,10 @@ namespace AssetStudio
                 }
 
                 CABMap = CABMap.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
-                var outputFile = new FileInfo($"PGRMap.bin");
+                var outputFile = new FileInfo($"Maps/PGRMap_{version}.bin");
+
+                if (!outputFile.Directory.Exists)
+                    outputFile.Directory.Create();
 
                 using (var binaryFile = outputFile.Create())
                 using (var writer = new BinaryWriter(binaryFile))
@@ -70,13 +73,13 @@ namespace AssetStudio
                 Logger.Warning($"PGRMap was not build, {e.Message}");
             }
         }
-        public static void LoadPGRMap()
+        public static void LoadPGRMap(string version)
         {
             Logger.Info(string.Format("Loading PGRMap"));
             try
             {
                 CABMap.Clear();
-                using (var binaryFile = File.OpenRead("PGRMap.bin"))
+                using (var binaryFile = File.OpenRead($"Maps/PGRMap_{version}.bin"))
                 using (var reader = new BinaryReader(binaryFile))
                 {
                     var count = reader.ReadInt32();

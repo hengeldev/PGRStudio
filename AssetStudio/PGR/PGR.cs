@@ -7,9 +7,14 @@ namespace AssetStudio
 {
     public class PGR
     {
-        private const string Key = "kurokurokurokuro";
+        public static int Version;
         private const string Header = "#$unity3dchina!@";
-        private readonly byte[] KeyBytes = Encoding.UTF8.GetBytes(Key);
+        private readonly byte[] KeyBytes = Encoding.UTF8.GetBytes(Keys[Version]);
+        private static readonly string[] Keys =
+        {
+            "kurokurokurokuro",
+            "y5XPvqLOrCokWRIa"
+        };
 
         public byte[] Index = new byte[0x10];
         public byte[] Sub = new byte[0x10];

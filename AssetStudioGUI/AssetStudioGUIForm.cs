@@ -105,6 +105,8 @@ namespace AssetStudioGUI
             displayAll.Checked = Properties.Settings.Default.displayAll;
             displayInfo.Checked = Properties.Settings.Default.displayInfo;
             enablePreview.Checked = Properties.Settings.Default.enablePreview;
+            specifyGameVersion.SelectedIndex = Properties.Settings.Default.gameVersion;
+            PGR.Version = Properties.Settings.Default.gameVersion;
             ConsoleHelper.AllocConsole();
             ConsoleHelper.SetConsoleTitle("Debug Console");
             FMODinit();
@@ -123,7 +125,8 @@ namespace AssetStudioGUI
             }
             Progress.Default = new Progress<int>(SetProgressBarValue);
             Studio.StatusStripUpdate = StatusStripUpdate;
-            CABManager.LoadPGRMap();
+            Logger.Info($"Target Version is {specifyGameVersion.SelectedItem}");
+            CABManager.LoadPGRMap(specifyGameVersion.SelectedItem.ToString());
         }
 
         private void AssetStudioGUIForm_DragEnter(object sender, DragEventArgs e)
@@ -2095,7 +2098,8 @@ namespace AssetStudioGUI
                 Logger.Info("scanning for files");
                 var files = Directory.GetFiles(openFolderDialog.Folder, "*.*", SearchOption.AllDirectories).ToList();
                 Logger.Info(string.Format("found {0} files", files.Count()));
-                await Task.Run(() => CABManager.BuildPGRMap(files));
+                var version = specifyGameVersion.SelectedItem.ToString();
+                await Task.Run(() => CABManager.BuildPGRMap(files, version));
             }
         }
 
@@ -2120,6 +2124,19 @@ namespace AssetStudioGUI
                     ExportAssetsMap(saveFolderDialog.Folder, toExportAssets, ExportListType.XML);
                 }
             }
+        }
+
+        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            optionsToolStripMenuItem.DropDown.Visible = false;
+            Properties.Settings.Default.gameVersion = specifyGameVersion.SelectedIndex;
+            Properties.Settings.Default.Save();
+
+            PGR.Version = specifyGameVersion.SelectedIndex;
+            Logger.Info($"Target Version is {specifyGameVersion.SelectedItem}");
+
+            ResetForm();
+            CABManager.LoadPGRMap(specifyGameVersion.SelectedItem.ToString());
         }
 
         private void glControl1_MouseWheel(object sender, MouseEventArgs e)
