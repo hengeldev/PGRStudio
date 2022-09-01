@@ -127,7 +127,7 @@ namespace AssetStudioGUI
             Progress.Default = new Progress<int>(SetProgressBarValue);
             Studio.StatusStripUpdate = StatusStripUpdate;
             Logger.Info($"Target Version is {specifyGameVersion.SelectedItem}");
-            CABManager.LoadPGRMap(specifyGameVersion.SelectedItem.ToString());
+            CABManager.LoadPGRMap("v" + specifyGameVersion.SelectedIndex.ToString());
         }
 
         private void AssetStudioGUIForm_DragEnter(object sender, DragEventArgs e)
@@ -2099,7 +2099,7 @@ namespace AssetStudioGUI
                 Logger.Info("scanning for files");
                 var files = Directory.GetFiles(openFolderDialog.Folder, "*.*", SearchOption.AllDirectories).ToList();
                 Logger.Info(string.Format("found {0} files", files.Count()));
-                var version = specifyGameVersion.SelectedItem.ToString();
+                var version = "v" + specifyGameVersion.SelectedIndex.ToString();
                 await Task.Run(() => CABManager.BuildPGRMap(files, version));
             }
         }
@@ -2137,7 +2137,7 @@ namespace AssetStudioGUI
             Logger.Info($"Target Version is {specifyGameVersion.SelectedItem}");
 
             ResetForm();
-            CABManager.LoadPGRMap(specifyGameVersion.SelectedItem.ToString());
+            CABManager.LoadPGRMap("v" + specifyGameVersion.SelectedIndex.ToString());
         }
 
         private void glControl1_MouseWheel(object sender, MouseEventArgs e)

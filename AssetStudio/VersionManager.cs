@@ -9,8 +9,8 @@ namespace AssetStudio
 
         static VersionManager()
         {
-            Versions.Add(0, "Global");
-            Versions.Add(1, "JP");
+            Versions.Add(0, "Global/KR");
+            Versions.Add(1, "CN/JP/TW");
         }
 
         public static string GetVersion(int ver)
